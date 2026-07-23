@@ -4,7 +4,6 @@
 # Reggie! - New Super Mario Bros. Wii Level Editor
 # Copyright (C) 2009-2010 Treeki, Tempus
 
-
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -26,6 +25,8 @@ import sys
 
 import PyInstaller.__main__
 
+# Eigene Plattform-Erkennung, damit in den Abfragen 'win64' genutzt werden kann
+CURRENT_PLATFORM = 'win64' if sys.platform == 'win32' else sys.platform
 
 ########################################################################
 ############################### Constants ##############################
@@ -57,7 +58,7 @@ FINAL_APP_BUNDLE_NAME = FULL_PROJECT_NAME + '.app'
 ################################# Intro ################################
 ########################################################################
 
-DIR = os.path.join('distrib', 'Tezuka_v%s_win32' % PROJECT_VERSION)
+DIR = os.path.join('distrib', 'Tezuka_v%s_win64' % PROJECT_VERSION)
 WORKPATH = 'build_temp'
 SPECFILE = SCRIPT_FILE[:-3] + '.spec'
 
@@ -74,7 +75,7 @@ print('>> Destination directory: ' + DIR)
 
 if os.path.isdir(DIR): shutil.rmtree(DIR)
 if os.path.isdir(WORKPATH): shutil.rmtree(WORKPATH)
-if os.path.isdir(SPECFILE): os.remove(SPECFILE)
+if os.path.isfile(SPECFILE): os.remove(SPECFILE)
 
 def run_pyinstaller(args):
     print('>>')
@@ -144,7 +145,7 @@ excludes = ['doctest', 'pdb', 'unittest', 'difflib',
             'os2emxpath', 'optpath', 'multiprocessing', 'ssl',
             'PyQt6.QtWebKit', 'PyQt6.QtNetwork']
 
-if sys.platform == 'nt':
+if CURRENT_PLATFORM == 'win64':
     excludes.append('posixpath')
 
 # Add excludes for other Qt modules
@@ -173,7 +174,7 @@ includes = ['pkgutil']
 
 # Binary excludes
 excludes_binaries = []
-if sys.platform == 'win32':
+if CURRENT_PLATFORM == 'win64':
     excludes_binaries = [
         # Qt stuff
         'Qt6Network.dll', 'Qt6Qml.dll', 'Qt6QmlModels.dll',
@@ -186,7 +187,7 @@ if sys.platform == 'win32':
                          # substring
     ]
 
-elif sys.platform == 'darwin':
+elif CURRENT_PLATFORM == 'darwin':
     # Sadly, we can't exclude anything on macOS -- it just crashes. :(
     # If a workaround could be found, here's the list we'd use:
     # excludes_binaries = [
@@ -196,7 +197,7 @@ elif sys.platform == 'darwin':
     # ]
     pass
 
-elif sys.platform == 'linux':
+elif CURRENT_PLATFORM == 'linux':
     excludes_binaries = [
         # Qt stuff
         # Currently (2020-09-25) these all end with ".so.5", but that
@@ -229,9 +230,9 @@ args = [
     '--workpath=' + WORKPATH,
 ]
 
-if sys.platform == 'win32':
+if CURRENT_PLATFORM == 'win64':
     args.append('--icon=' + os.path.abspath(WIN_ICON))
-elif sys.platform == 'darwin':
+elif CURRENT_PLATFORM == 'darwin':
     args.append('--icon=' + os.path.abspath(MAC_ICON))
     args.append('--osx-bundle-identifier=' + MAC_BUNDLE_IDENTIFIER)
 
@@ -288,7 +289,7 @@ for line in lines:
         new_lines.append('    info_plist=' + json.dumps(info_plist) + ',')
         insert_info_plist = False
 
-    if sys.platform == 'darwin' and 'BUNDLE(' in line:
+    if CURRENT_PLATFORM == 'darwin' and 'BUNDLE(' in line:
         # We cannot insert the info_plist keyword argument now, as the next
         # argument is not a keyword argument. As such, we set a flag to add it
         # after the next line.
@@ -297,7 +298,6 @@ for line in lines:
 # Save new specfile
 with open(SPECFILE, 'w', encoding='utf-8') as f:
     f.write('\n'.join(new_lines))
-
 
 
 ########################################################################
@@ -325,7 +325,7 @@ os.remove(SPECFILE)
 ########################################################################
 print('>> Copying required files...')
 
-if sys.platform == 'darwin':
+if CURRENT_PLATFORM == 'darwin':
     dest_folder = os.path.join(DIR, AUTO_APP_BUNDLE_NAME, 'Contents', 'Resources')
 else:
     dest_folder = DIR
@@ -348,7 +348,7 @@ print('>> Cleaning up...')
 # separate from the app bundle. I don't know why it's there, but we
 # delete it.
 
-if sys.platform == 'darwin':
+if CURRENT_PLATFORM == 'darwin':
     leftover_executable = os.path.join(DIR, SCRIPT_FILE.split('.')[0])
     if os.path.isfile(leftover_executable):
         os.unlink(leftover_executable)
@@ -356,7 +356,7 @@ if sys.platform == 'darwin':
 # Also on macOS, we have to rename the .app folder to the display name
 # because CFBundleDisplayName is dumb and doesn't actually affect
 # the app name shown in Finder
-if sys.platform == 'darwin':
+if CURRENT_PLATFORM == 'darwin':
     os.rename(os.path.join(DIR, AUTO_APP_BUNDLE_NAME), os.path.join(DIR, FINAL_APP_BUNDLE_NAME))
 
 
