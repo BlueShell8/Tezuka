@@ -40,7 +40,7 @@ class ReggieTheme:
         self.forceUiColor = False
         self.forceStyleSheet = False
         self.useRoundedRectangles = True
-        self.overridesFile = os.path.join('reggiedata', 'overrides.png')
+        self.overridesFile = os.path.join('tezukadata', 'overrides.png')
 
         # Add the colors                                                       # Descriptions:
         self.colors = {
@@ -93,7 +93,7 @@ class ReggieTheme:
         """
         Initializes the theme from the folder
         """
-        folder = os.path.join('reggiedata', 'themes', folder)
+        folder = os.path.join('tezukadata', 'themes', folder)
 
         fileList = os.listdir(folder)
 
@@ -287,7 +287,7 @@ class ReggieTheme:
         cache = self.iconCacheLg if big else self.iconCacheSm
 
         if name not in cache:
-            path = os.path.join('reggiedata', 'ico', 'lg' if big else 'sm', 'icon-')
+            path = os.path.join('tezukadata', 'ico', 'lg' if big else 'sm', 'icon-')
             path += name
             cache[name] = QtGui.QIcon(path)
 

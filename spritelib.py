@@ -83,7 +83,7 @@ def GetImg(imgname, image=False):
     imgname = str(imgname)
 
     # Try to find the best path
-    path = os.path.join('reggiedata', 'sprites', imgname)
+    path = os.path.join('tezukadata', 'sprites', imgname)
 
     for folder in reversed(SpritesFolders):  # find the most recent copy
         tryPath = os.path.join(folder, imgname)

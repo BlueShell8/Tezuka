@@ -113,7 +113,7 @@ class GameDefMenu(QtWidgets.QMenu):
             if src_path == "":
                 return
 
-            dst_path = os.path.join(os.getcwd(), 'reggiedata', 'patches', os.path.basename(src_path))
+            dst_path = os.path.join(os.getcwd(), 'tezukadata', 'patches', os.path.basename(src_path))
             src_path = os.path.normpath(src_path)
             if create_symlink(src_path, dst_path):
                 restart_reggie_info()
@@ -244,18 +244,18 @@ class ReggieGameDefinition:
         self.sprites = sprites
 
         self.files = {
-            'bga': gdf(os.path.join('reggiedata', 'bga.txt'), False),
-            'bgb': gdf(os.path.join('reggiedata', 'bgb.txt'), False),
-            'entrancetypes': gdf(os.path.join('reggiedata', 'entrancetypes.txt'), False),
-            'levelnames': gdf(os.path.join('reggiedata', 'levelnames.xml'), False),
-            'music': gdf(os.path.join('reggiedata', 'music.txt'), False),
-            'spritecategories': gdf(os.path.join('reggiedata', 'spritecategories.xml'), False),
-            'spritedata': gdf(os.path.join('reggiedata', 'spritedata.xml'), False),
-            'spritelistdata': gdf(os.path.join('reggiedata', 'spritelistdata.txt'), False),
-            'tilesetinfo': gdf(os.path.join('reggiedata', 'tilesetinfo.xml'), False),
-            'tilesets': gdf(os.path.join('reggiedata', 'tilesets.xml'), False),
-            'ts1_descriptions': gdf(os.path.join('reggiedata', 'ts1_descriptions.txt'), False),
-            'zonethemes': gdf(os.path.join('reggiedata', 'zonethemes.txt'), False),
+            'bga': gdf(os.path.join('tezukadata', 'bga.txt'), False),
+            'bgb': gdf(os.path.join('tezukadata', 'bgb.txt'), False),
+            'entrancetypes': gdf(os.path.join('tezukadata', 'entrancetypes.txt'), False),
+            'levelnames': gdf(os.path.join('tezukadata', 'levelnames.xml'), False),
+            'music': gdf(os.path.join('tezukadata', 'music.txt'), False),
+            'spritecategories': gdf(os.path.join('tezukadata', 'spritecategories.xml'), False),
+            'spritedata': gdf(os.path.join('tezukadata', 'spritedata.xml'), False),
+            'spritelistdata': gdf(os.path.join('tezukadata', 'spritelistdata.txt'), False),
+            'tilesetinfo': gdf(os.path.join('tezukadata', 'tilesetinfo.xml'), False),
+            'tilesets': gdf(os.path.join('tezukadata', 'tilesets.xml'), False),
+            'ts1_descriptions': gdf(os.path.join('tezukadata', 'ts1_descriptions.txt'), False),
+            'zonethemes': gdf(os.path.join('tezukadata', 'zonethemes.txt'), False),
         }
         self.folders = {
             'bga': gdf(None, False),
@@ -274,7 +274,7 @@ class ReggieGameDefinition:
         self.gamepath = name
 
         # Parse the file (errors are handled by __init__())
-        path = os.path.join("reggiedata", "patches", name, "main.xml")
+        path = os.path.join("tezukadata", "patches", name, "main.xml")
         tree = etree.parse(path)
         root = tree.getroot()
 
@@ -297,7 +297,7 @@ class ReggieGameDefinition:
         if not self.custom:
             return
 
-        path = os.path.join("reggiedata", "patches", self.gamepath, "main.xml")
+        path = os.path.join("tezukadata", "patches", self.gamepath, "main.xml")
         tree = etree.parse(path)
         root = tree.getroot()
 
@@ -308,7 +308,7 @@ class ReggieGameDefinition:
             self.base = ReggieGameDefinition()
 
         # Parse the nodes
-        addpath = os.path.join("reggiedata", "patches", self.gamepath)
+        addpath = os.path.join("tezukadata", "patches", self.gamepath)
         for node in root:
             n = node.tag.lower()
             if n not in ('file', 'folder'):
@@ -320,10 +320,10 @@ class ReggieGameDefinition:
             if game is None:
                 path = os.path.join(addpath, node.get('path'))
             elif game == globals_.trans.string('Gamedefs', 13):  # 'New Super Mario Bros. Wii'
-                path = os.path.join('reggiedata', node.get('path'))
+                path = os.path.join('tezukadata', node.get('path'))
             else:
                 def_ = FindGameDef(game, self.gamepath)
-                path = os.path.join('reggiedata', 'patches', def_.gamepath, node.get('path'))
+                path = os.path.join('tezukadata', 'patches', def_.gamepath, node.get('path'))
 
             dict_type = self.files if n == 'file' else self.folders  # self.files or self.folders
             dict_type[node.get('name')] = self.GameDefinitionFile(path, patch)
@@ -359,7 +359,7 @@ class ReggieGameDefinition:
         Returns the folder to a bg image. Layer must be 'a' or 'b'
         """
         # Name will be of the format '0000.png'
-        fallback = os.path.join('reggiedata', 'bg' + layer, name)
+        fallback = os.path.join('tezukadata', 'bg' + layer, name)
         filename = os.path.join('bg' + layer, name)
 
         # See if it was defined specifically
@@ -385,7 +385,7 @@ class ReggieGameDefinition:
         """
         # Name is of the format 'something.xml'
         filename = os.path.join('external', name)
-        fallback = os.path.join('reggiedata', filename)
+        fallback = os.path.join('tezukadata', filename)
 
         # check if it's in self.files
         if filename in self.files:
@@ -574,9 +574,9 @@ def getAvailableGameDefs():
     game_defs = []
 
     # Add them
-    folders = os.listdir(os.path.join('reggiedata', 'patches'))
+    folders = os.listdir(os.path.join('tezukadata', 'patches'))
     for folder in folders:
-        if not os.path.isfile(os.path.join('reggiedata', 'patches', folder, 'main.xml')): continue
+        if not os.path.isfile(os.path.join('tezukadata', 'patches', folder, 'main.xml')): continue
 
         def_ = ReggieGameDefinition(folder)
         if def_.custom:
@@ -786,7 +786,7 @@ def FindGameDef(name, skip=None):
     Helper function to find a game def with a specific name.
     Skip will be skipped
     """
-    patches_path = os.path.join('reggiedata', 'patches')
+    patches_path = os.path.join('tezukadata', 'patches')
 
     for folder in os.listdir(patches_path):
         if folder == skip:
@@ -827,7 +827,7 @@ def UpgradeSpritesFile(filename, folderpath):
             fileOut.write(new_data)
 
         # Now backup the old file
-        with open(os.path.join("reggiedata", "patches", folderpath, "sprites_old.py"), 'w') as fileOrig:
+        with open(os.path.join("tezukadata", "patches", folderpath, "sprites_old.py"), 'w') as fileOrig:
             fileOrig.write(orig_data)
 
     except Exception as error:

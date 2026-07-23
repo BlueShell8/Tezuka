@@ -266,7 +266,7 @@ class BGTab(QtWidgets.QWidget):
 
                 filename = globals_.gamedef.bgFile(val + '.png', 'ab'[slot_id])
                 if not os.path.isfile(filename):
-                    filename = os.path.join('reggiedata', ['bga', 'bgb'][slot_id], 'no_preview.png')
+                    filename = os.path.join('tezukadata', ['bga', 'bgb'][slot_id], 'no_preview.png')
 
                 pix = QtGui.QPixmap(filename)
                 pix = pix.scaled(int(pix.width() * scale), int(pix.height() * scale))

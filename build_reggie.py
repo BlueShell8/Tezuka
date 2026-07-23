@@ -36,16 +36,16 @@ import PyInstaller.__main__
 # projects that use the same technologies (Reggie, Puzzle, BRFNTify,
 # etc)
 
-PROJECT_NAME = 'Reggie! Next'
-FULL_PROJECT_NAME = 'Reggie! Next Level Editor'
-PROJECT_VERSION = '4.9.0'
+PROJECT_NAME = 'Tezuka!'
+FULL_PROJECT_NAME = 'Tezuka! Level Editor'
+PROJECT_VERSION = '0.0.1'
 
-WIN_ICON = os.path.join('reggiedata', 'win_icon.ico')
-MAC_ICON = os.path.join('reggiedata', 'reggie.icns')
+WIN_ICON = os.path.join('tezukadata', 'win_icon.ico')
+MAC_ICON = os.path.join('tezukadata', 'reggie.icns')
 MAC_BUNDLE_IDENTIFIER = 'ca.chronometry.reggie'
 
 SCRIPT_FILE = 'reggie.py'
-DATA_FOLDERS = ['reggiedata', 'reggieextras']
+DATA_FOLDERS = ['tezukadata', 'reggieextras']
 DATA_FILES = ['readme.md', 'license.txt']
 
 # macOS only
@@ -57,7 +57,7 @@ FINAL_APP_BUNDLE_NAME = FULL_PROJECT_NAME + '.app'
 ################################# Intro ################################
 ########################################################################
 
-DIR = os.path.join('distrib', 'reggie_next_v%s_win32' % PROJECT_VERSION)
+DIR = os.path.join('distrib', 'Tezuka_v%s_win32' % PROJECT_VERSION)
 WORKPATH = 'build_temp'
 SPECFILE = SCRIPT_FILE[:-3] + '.spec'
 

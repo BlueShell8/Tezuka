@@ -2517,7 +2517,7 @@ class EntranceItem(LevelEditorItem):
         """
         if EntranceItem.EntranceImages is None:
             ei = []
-            src = QtGui.QPixmap(os.path.join('reggiedata', 'entrances.png'))
+            src = QtGui.QPixmap(os.path.join('tezukadata', 'entrances.png'))
             for i in range(18):
                 ei.append(src.copy(i * 24, 0, 24, 24))
             EntranceItem.EntranceImages = ei

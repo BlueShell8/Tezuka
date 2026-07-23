@@ -191,7 +191,7 @@ class ReggieWindow(QtWidgets.QMainWindow):
         # set up the window
         QtWidgets.QMainWindow.__init__(self, None)
         self.setWindowTitle('Reggie! Next Level Editor %s' % globals_.ReggieVersionShort)
-        self.setWindowIcon(QtGui.QIcon('reggiedata/icon.png'))
+        self.setWindowIcon(QtGui.QIcon('tezukadata/icon.png'))
         self.setIconSize(QtCore.QSize(16, 16))
         self.setUnifiedTitleAndToolBarOnMac(True)
 
@@ -1627,7 +1627,7 @@ class ReggieWindow(QtWidgets.QMainWindow):
         """
         mod_path = module_path()
 
-        file_path = os.path.join('reggiedata', 'help', 'index.html')
+        file_path = os.path.join('tezukadata', 'help', 'index.html')
         if mod_path is None:
             file_path = os.path.join(os.getcwd(), file_path)
         else:
@@ -1641,7 +1641,7 @@ class ReggieWindow(QtWidgets.QMainWindow):
         """
         mod_path = module_path()
 
-        file_path = os.path.join('reggiedata', 'help', 'tips.html')
+        file_path = os.path.join('tezukadata', 'help', 'tips.html')
         if mod_path is None:
             file_path = os.path.join(os.getcwd(), file_path)
         else:

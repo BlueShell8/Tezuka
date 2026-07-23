@@ -44,18 +44,18 @@ class ReggieTranslation:
         self.translator = 'Treeki, Tempus'
 
         self.files = { None: {
-            'bga': os.path.join('reggiedata', 'bga.txt'),
-            'bgb': os.path.join('reggiedata', 'bgb.txt'),
-            'entrancetypes': os.path.join('reggiedata', 'entrancetypes.txt'),
-            'levelnames': os.path.join('reggiedata', 'levelnames.xml'),
-            'music': os.path.join('reggiedata', 'music.txt'),
-            'spritecategories': os.path.join('reggiedata', 'spritecategories.xml'),
-            'spritedata': os.path.join('reggiedata', 'spritedata.xml'),
-            'tilesets': os.path.join('reggiedata', 'tilesets.xml'),
-            'tilesetinfo': os.path.join('reggiedata', 'tilesetinfo.xml'),
-            'ts1_descriptions': os.path.join('reggiedata', 'ts1_descriptions.txt'),
-            'zonethemes': os.path.join('reggiedata', 'zonethemes.txt'),
-            'external-actors': os.path.join('reggiedata', 'external', 'actors.xml')
+            'bga': os.path.join('   ', 'bga.txt'),
+            'bgb': os.path.join('tezukadata', 'bgb.txt'),
+            'entrancetypes': os.path.join('tezukadata', 'entrancetypes.txt'),
+            'levelnames': os.path.join('tezukadata', 'levelnames.xml'),
+            'music': os.path.join('tezukadata', 'music.txt'),
+            'spritecategories': os.path.join('tezukadata', 'spritecategories.xml'),
+            'spritedata': os.path.join('tezukadata', 'spritedata.xml'),
+            'tilesets': os.path.join('tezukadata', 'tilesets.xml'),
+            'tilesetinfo': os.path.join('tezukadata', 'tilesetinfo.xml'),
+            'ts1_descriptions': os.path.join('tezukadata', 'ts1_descriptions.txt'),
+            'zonethemes': os.path.join('tezukadata', 'zonethemes.txt'),
+            'external-actors': os.path.join('tezukadata', 'external', 'actors.xml')
         }}
 
         self.strings = {
@@ -371,7 +371,7 @@ class ReggieTranslation:
                 17: 'Error',
                 18: 'An error occurred while attempting to load this game patch. It will now be unloaded. Here\'s the specific error:[br][error]',
                 19: 'Add a Reggie Patch Folder...',
-                20: 'Creates a symlink in the /reggiedata/patches folder using add_reggie_patch',
+                20: 'Creates a symlink in the /tezukadata/patches folder using add_reggie_patch',
             },
             'InfoDlg': {
                 0: 'Level Information',
@@ -1039,7 +1039,7 @@ class ReggieTranslation:
         MaxVer = 1.0
 
         # Parse the file
-        path = os.path.join('reggiedata', 'translations', name, 'main.xml')
+        path = os.path.join('tezukadata', 'translations', name, 'main.xml')
 
         try:
             tree = ElementTree.parse(path)
@@ -1062,7 +1062,7 @@ class ReggieTranslation:
 
         # Parse the nodes
         strings = False
-        base_path = os.path.join('reggiedata', 'translations', name)
+        base_path = os.path.join('tezukadata', 'translations', name)
         for node in root:
             if node.tag.lower() == 'file':
                 # It's a file node

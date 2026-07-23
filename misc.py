@@ -79,7 +79,7 @@ def FilesAreMissing():
     Checks to see if any of the required files for Reggie are missing
     """
 
-    if not os.path.isdir('reggiedata'):
+    if not os.path.isdir('tezukadata'):
         QtWidgets.QMessageBox.warning(None, globals_.trans.string('Err_MissingFiles', 0), globals_.trans.string('Err_MissingFiles', 1))
         return True
 
@@ -88,7 +88,7 @@ def FilesAreMissing():
     missing = []
 
     for check in required:
-        if not os.path.isfile(os.path.join('reggiedata', check)):
+        if not os.path.isfile(os.path.join('tezukadata', check)):
             missing.append(check)
 
     if missing:
@@ -1545,10 +1545,10 @@ class PreferencesDialog(QtWidgets.QDialog):
                 self.Trans.setItemData(0, None, QtCore.Qt.ItemDataRole.UserRole)
                 self.Trans.setCurrentIndex(0)
                 i = 1
-                for trans in os.listdir(os.path.join('reggiedata', 'translations')):
+                for trans in os.listdir(os.path.join('tezukadata', 'translations')):
                     if trans.lower() == 'english': continue
 
-                    fp = os.path.join('reggiedata', 'translations', trans, 'main.xml')
+                    fp = os.path.join('tezukadata', 'translations', trans, 'main.xml')
                     if not os.path.isfile(fp): continue
 
                     transobj = ReggieTranslation(trans)
@@ -1771,7 +1771,7 @@ class PreferencesDialog(QtWidgets.QDialog):
                 Searches the Themes folder and returns a list of theme filepaths.
                 Automatically adds 'Classic' to the list.
                 """
-                theme_path = os.path.join('reggiedata', 'themes')
+                theme_path = os.path.join('tezukadata', 'themes')
                 theme_list = [('Classic', ReggieTheme())]
                 for theme_name in os.listdir(theme_path):
                     if not os.path.isdir(os.path.join(theme_path, theme_name)):
