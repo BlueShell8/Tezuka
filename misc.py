@@ -352,6 +352,10 @@ def LoadBgANames(reload_=False):
 
     globals_.BgANames = []
     for path in paths:
+        path = str(path).strip().lstrip('\\/')
+        if not os.path.exists(path) and os.path.exists(os.path.join('tezukadata', path)):
+            path = os.path.join('tezukadata', path)
+
         with open(path, 'r', encoding='utf-8') as f:
             raw = [x.strip() for x in f.readlines()]
 
@@ -379,6 +383,10 @@ def LoadBgBNames(reload_=False):
 
     globals_.BgBNames = []
     for path in paths:
+        path = str(path).strip().lstrip('\\/')
+        if not os.path.exists(path) and os.path.exists(os.path.join('tezukadata', path)):
+            path = os.path.join('tezukadata', path)
+
         with open(path, 'r', encoding='utf-8') as f:
             raw = [x.strip() for x in f.readlines()]
 
@@ -394,7 +402,6 @@ def LoadBgBNames(reload_=False):
             if not found: globals_.BgBNames.append([w[0], w[1]])
 
         globals_.BgBNames.sort(key=lambda entry: int(entry[0], 16))
-
 
 def LoadZoneThemes(reload_=False):
     """
