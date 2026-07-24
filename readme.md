@@ -1,15 +1,10 @@
-# Tezuka! Level Editor
-## The New Super Mario Bros. Wii Editor
+Tezuka! Level Editor
+The New Super Mario Bros. Wii Editor
+Tezuka! Level Editor is a modern New Super Mario Bros. Wii level editor featuring Yaz0 compression and more!
 
----------------------------------------------------------------
-original readme below
-this new editor is a modern New Super Mario Bros. Wii Editor
-with Yaz0 compression and more!
-please download the source code of Tezuka! and run the file 
-run-python.bat to start the Editor and dont start the file
-build_reggie.bat thanks
-----------------------------------------------------------------
+⚠️ Note: This editor is currently in an alpha version. Use it at your own risk.
 
+Original README
 Advanced level editor for New Super Mario Bros. Wii originally created by Treeki, Tempus and RoadrunnerWMC using Python, PyQt and Wii.py.
 
 "Next" version created by RoadrunnerWMC, based on official release 3. Milestone 4 version is a collaboration of Horizon users and it aims to add more features requested by users.
