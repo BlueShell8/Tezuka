@@ -1,5 +1,6 @@
-Tezuka! Level Editor
-The New Super Mario Bros. Wii Editor
+**Tezuka! Level Editor**
+**The New Super Mario Bros. Wii Editor**
+
 Tezuka! Level Editor is a modern New Super Mario Bros. Wii level editor featuring Yaz0 compression and more!
 
 ⚠️ Note: This editor is currently in an alpha version. Use it at your own risk.
