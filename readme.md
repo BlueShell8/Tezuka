@@ -1,7 +1,13 @@
-# Reggie! Level Editor Next
+# Tezuka! Level Editor
 ## The New Super Mario Bros. Wii Editor
-(Milestone 4)
 
+---------------------------------------------------------------
+original readme below
+this new editor is a modern New Super Mario Bros. Wii Editor
+with Yaz0 compression and more!
+please download the source code of Tezuka! and run the file 
+run-python.bat to start the Editor and dont start the file
+build_reggie.bat thanks
 ----------------------------------------------------------------
 
 Advanced level editor for New Super Mario Bros. Wii originally created by Treeki, Tempus and RoadrunnerWMC using Python, PyQt and Wii.py.
